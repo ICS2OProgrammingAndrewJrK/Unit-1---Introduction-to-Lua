@@ -6,7 +6,7 @@
 
 -- print "Hello, world" ot the command terminal
 print ("***Hellooooooooooooo!") 
- 
+textObjectSignature "By:Andrew Jr" 
 -- hide the status bar
 display.setStatusBar(display.HiddenStatusBar) 
 
@@ -18,7 +18,7 @@ local textObject
 
 -- display taxt on the screen at position position x =500 and y = 500 with
 -- a deafult font style and font size of 50
-textObject = display.newText( "Hello, Ms Raffin!", 500, 500, nil, 50 )
+textObject = display.newText( "Hello, Andrew!", 500, 500, nil, 50 )
 
 -- sets the color of the text
 textObject:setTextColor(155/255, 42/255, 198/255)
