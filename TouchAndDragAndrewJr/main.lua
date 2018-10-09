@@ -7,16 +7,68 @@
 --hide the status bar
 display.setStatusBar(display.HiddenStatusBar)
 
--- local variables. Iam still trying to get the x-value to be set properly
 local backgroundImage = display.newImageRect("Images/background.png", 2048, 1536)
-local yellowGirl = display.newImageRect("Images/yellowGirl.png", 150, 150)
-local yellowGirlWidth = yellowGirl.width
-local yellowGirlHeight = yellowGirl.height
+local star = display.newImageRect("Images/star.png", 150, 150)
+local planet = display.newImageRect("Images/planet.png", 150, 150)
 
-local blueGirl = display.newImageRect("Images/blueGirl.png", 150, 150)
-local blueGirlWidth = blueGirl.width
-local BlueGirlHeight = blueGirl.height
+-- my boolean variables to keep track of which object I touched first 
+local alreadyTouchedstar = false
+local alreadyTouchedplanet = false
 
+--set the initial x and y position of myImage 
+star.x = 400
+star.y = 500
 
--- my boolean variables to track of which object i touched first
-local alreadyTouchedYellowGirl = false
+planet.x = 300
+planet.y = 200
+
+-- Function: planetListner, starListener
+-- Input: touch listener
+-- output: none
+-- Description: when star is touched, move her
+local function planetListener(touch)
+
+   if (touch.phase == "began") then
+ 	   if (alreadyTouchedstar == false) then
+ 		   alreadyTouchedplanet = true 
+       end
+    end
+
+    if ( (touch.phase == "moved") and (alreadyTouchedplanet == true) ) then
+    	planet.x = touch.x
+    	planet.y = touch.y
+
+        
+    end
+
+    if (touch.phase == "ended") then
+        alreadyTouchedplanet = false
+        alreadyTouchedstar = true
+
+        
+    end
+end
+
+local function starListener(touch)
+
+   if (touch.phase == "began") then
+       if (alreadyTouchedplanet == false) then
+           alreadyTouchedstar = true 
+       end
+    end
+
+    if ( (touch.phase == "moved") and (alreadyTouchedstar == true) ) then
+        star.x = touch.x
+        star.y = touch.y
+    end
+
+    if (touch.phase == "ended") then
+        alreadyTouchedplanet = false
+        alreadyTouchedstar = false
+    end
+end
+
+-- add the respective listeners to each object
+planet:addEventListener("touch", planetListener)
+star:addEventListener("touch", starListener)
+
