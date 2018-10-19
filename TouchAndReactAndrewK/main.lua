@@ -26,12 +26,14 @@ textObject.x = display.contentWidth/2
 textObject.y = display. contentHeight/2
 textObject:setTextColor (1, 1, 0)
 textObject.isVisible = false
+textObject.x = 500
+textObject.y = 490
 
 -- created checkmark button, set its position and make it visible
 local checkmarkButton = display.newImageRect("Images/checkmark.png",198, 96)
 checkmarkButton.x = 500
 checkmarkButton.y = 280
-checkmarkButton.isVisible = true
+checkmarkButton.isVisible = false
 
 -- Funtion: BlueButtonListener
 -- Input: touch listener
@@ -43,13 +45,14 @@ local function BlueButtonListener(touch)
     	blueButton.isVisible = false
     	redButton.isVisible = true
     	textObject.isVisible = true
+        checkmarkButton.isVisible = true
     end	
 
     if (touch.phase == "ended") then
         blueButton.isVisible = true
         redButton.isVisible = false
         textObject.isVisible = false
-
+        checkmarkButton.isVisible = false
     end
 end    
  
@@ -61,15 +64,15 @@ end
 local function redButtonListener(touch)
     if (touch.phase == "began") then
     	redButton.isVisible = false
-    	blueButton.isVisible = true
+    	blueButton.isVisible = false
     	textObject.isVisible = true
     end	
+
 
     if (touch.phase == "ended") then
         redButton.isVisible = true
         blueButton.isVisible = false
         textObject.isVisible = false
-
     end
 end     
 
@@ -89,7 +92,6 @@ local function checkmarkButtonListener(touch)
         checkmarkButton.isVisible = true
         checkmarkButton.isVisible = false
         textObject.isVisible = false
-
     end
 end     
 --add the respective listesteners to each object
