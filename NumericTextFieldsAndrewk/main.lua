@@ -31,8 +31,8 @@ local randomOperator
 ------------------------------------------------------------------------------------
 
 -- Correct sound
-local correctSound = audio.LoadSound( "Sound/")
-
+local heySound = audio.loadSound("Sounds/hey.mp3")--Setting a variable to an mp3 file
+local heySoundChannel
 
 
 ------------------------------------------------------------------------------------
@@ -86,6 +86,7 @@ local function NumericFieldListener( event )
 		if (userAnswer == correctAnswer) then
 			correctObject.isVisible = true 
 			incorrectObject.isVisible = false
+			heySoundChannel = audio.play(heySound)
 			timer.performWithDelay(2000,HideCorrect)
 		else 
 			correctObject.isVisible = false 
@@ -107,14 +108,14 @@ questionObject = display.newText("", display.contentWidth/3, display.contentHeig
 questionObject:setTextColor(155/255, 42/255, 198/255)
 
 -- create the correct  text object and make it invisible
-correctObject = display.newText("correct, Well done!", display.contentWidth/2, display.contentHeight*2/3, nil, 50)
+correctObject = display.newText("correct, Well done!", display.contentWidth/2, display.contentHeight*2/3, nil, 40)
 correctObject:setTextColor(15/255, 42/255, 18/255)
 correctObject.isVisible = false
 
 -- create numeric field 
-numericField = native.newTextField(display.contentWidth/2, display.contentHeight/2, 150, 80)
+numericField = native.newTextField(display.contentWidth/2, display.contentHeight/2, 100, 100)
 numericField.inputType = "number"
-
+numericField.xScale = 2
 
 
 -- create the incorrect  text object and make it invisible

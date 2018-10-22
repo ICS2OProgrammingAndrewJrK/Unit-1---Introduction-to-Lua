@@ -2,13 +2,20 @@
 -- Name: Andrew Jr
 -- Course: ICS2O/3C
 -- This program...
- 
+
+-----------------------------------------------------------------------------------------
+--SOUNDS 
+-----------------------------------------------------------------------------------------
+
+local goingHigherSound = audio.loadSound("Sound/goingHigher.mp3")
+local goingHigherSoundChannel = audio.play(goingHigherSound)
+
 -- hide the status dar 
 display.setStatusBar(display.HiddenStatusBar)
 
 -- glodal varibles
-scrollSpeed = 10
-scrollspeed = 3
+scrollSpeed = 2
+scrollspeed = 1
 
 -- background image with width and height
 local backgroundImage = display.newImageRect("Images/background.png", 2048, 1536)

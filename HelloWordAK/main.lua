@@ -4,6 +4,14 @@
 -- terminal.
 -----------------------------------------------------------------------------------------
 
+--------------------------------------------------------------------------------------------------
+--SOUNDS
+--------------------------------------------------------------------------------------------------
+
+local bensoundbuddySound = audio.loadSound("Sound/bensound-buddy.mp3")
+local bensoundbuddySoundChannel = audio.play(bensoundbuddySound)
+
+
 -- print "Hello, world" ot the command terminal
 print ("***Hellooooooooooooo!") 
 
