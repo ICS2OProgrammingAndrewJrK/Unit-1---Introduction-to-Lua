@@ -14,7 +14,7 @@ local goingHigherSoundChannel = audio.play(goingHigherSound)
 display.setStatusBar(display.HiddenStatusBar)
 
 -- glodal varibles
-scrollSpeed = 2
+scrollSpeed = 3
 scrollspeed = 1
 
 -- background image with width and height
