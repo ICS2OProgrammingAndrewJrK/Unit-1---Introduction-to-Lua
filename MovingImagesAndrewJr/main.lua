@@ -7,14 +7,15 @@
 --SOUNDS 
 -----------------------------------------------------------------------------------------
 
-local goingHigherSound = audio.loadSound("Sound/goingHigher.mp3")
-local goingHigherSoundChannel = audio.play(goingHigherSound)
+local jazzyfrenchySound = audio.loadSound("Sound/jazzyfrenchy.mp3")--Setting a variable to an mp3 file
+local jazzyfrenchyChannel 
+local  jazzyfrenchySoundChannel = audio.play(jazzyfrenchySound)
 
 -- hide the status dar 
 display.setStatusBar(display.HiddenStatusBar)
 
 -- glodal varibles
-scrollSpeed = 2
+scrollSpeed = 3
 scrollspeed = 1
 
 -- background image with width and height
@@ -52,5 +53,5 @@ local function MoveShip(event)
 end
 
 -- MoveShip will be called over and over again
-Runtime:addEventListener("enterFrame", MoveShip)      
- 
+Runtime:addEventListener("enterFrame", MoveShip)    
+

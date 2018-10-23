@@ -30,7 +30,7 @@ local randomOperator
 -- SOUNDs
 ------------------------------------------------------------------------------------
 
--- Correct sound
+
 local heySound = audio.loadSound("Sounds/hey.mp3")--Setting a variable to an mp3 file
 local heySoundChannel
 
@@ -130,8 +130,7 @@ numericField:addEventListener( "userInput", NumericFieldListener)
 -- function calls
 -----------------------------------------------------------------------------------------------------------------------------
 
--- call the functionto as the Question
-AskQuestion()
+
 
  
 

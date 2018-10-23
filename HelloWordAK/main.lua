@@ -8,8 +8,8 @@
 --SOUNDS
 --------------------------------------------------------------------------------------------------
 
-local bensoundbuddySound = audio.loadSound("Sound/bensound-buddy.mp3")
-local bensoundbuddySoundChannel = audio.play(bensoundbuddySound)
+local summerSound = audio.loadSound("Sound/summer.mp3")
+local summerSoundChannel = audio.play(summerSound)
 
 
 -- print "Hello, world" ot the command terminal
