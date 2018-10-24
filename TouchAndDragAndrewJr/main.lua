@@ -3,6 +3,13 @@
 -- Name: Andrew Jr
 -- Course: ICS2O/3C
 -- This program...
+-----------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------
+--SOUNDS
+-----------------------------------------------------------------------------------------
+local heySound = audio.loadSound("Sounds/hey.mp3")
+local heySoundChannel
 
 -- hide the status bar
 display.setStatusBar(display.HiddenStatusBar)

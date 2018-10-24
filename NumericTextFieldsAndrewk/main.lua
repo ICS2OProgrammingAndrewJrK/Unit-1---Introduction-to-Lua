@@ -7,7 +7,7 @@
 display.setStatusBar(display.HiddenStatusBar)
 
 --sets the background colour 
-display.setDefault("background", 190/255, 123/255, 13/255)
+display.setDefault("background", 50/255, 70/255, 83/255)
 
 -------------------------------------------------------------------------------------
 --Local variables
@@ -34,6 +34,7 @@ local randomOperator
 local heySound = audio.loadSound("Sounds/hey.mp3")--Setting a variable to an mp3 file
 local heySoundChannel
 
+local wrongSound = audio.loadSound("Sounds/wrongSound.mp3")
 
 ------------------------------------------------------------------------------------
 -- local functions 
@@ -91,6 +92,7 @@ local function NumericFieldListener( event )
 		else 
 			correctObject.isVisible = false 
 			incorrectObject.isVisible = true
+			wrongSoundChannel = audio.play(wrongSound)
 			timer.performWithDelay(2000,HideCorrect)
 		end
 	    --clear text field 
@@ -104,23 +106,23 @@ end
 
 
 -- display a question and sets the color 
-questionObject = display.newText("", display.contentWidth/3, display.contentHeight/2, nil, 50)
-questionObject:setTextColor(155/255, 42/255, 198/255)
+questionObject = display.newText("", display.contentWidth/3, display.contentHeight/2, nil, 60)
+questionObject:setTextColor(5/255, 200/255, 198/255)
 
 -- create the correct  text object and make it invisible
-correctObject = display.newText("correct, Well done!", display.contentWidth/2, display.contentHeight*2/3, nil, 40)
-correctObject:setTextColor(15/255, 42/255, 18/255)
+correctObject = display.newText("correct, Well done!", display.contentWidth/2, display.contentHeight*2/3, nil, 70)
+correctObject:setTextColor(200/255, 200/255, 180/255)
 correctObject.isVisible = false
 
 -- create numeric field 
 numericField = native.newTextField(display.contentWidth/2, display.contentHeight/2, 100, 100)
 numericField.inputType = "number"
-numericField.xScale = 2
+numericField.xScale = 1
 
 
 -- create the incorrect  text object and make it invisible
 incorrectObject = display.newText("incorrect!", display.contentWidth/2, display.contentHeight*2/3, nil, 50)
-incorrectObject:setTextColor(15/255, 255/255, 18/255)
+incorrectObject:setTextColor(155/255, 255/255, 180/255)
 incorrectObject.isVisible = false
 
 --add the event listener fo the numeric field

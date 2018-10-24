@@ -2,12 +2,22 @@
 -- Name: Your Name
 -- Course: ICS2O/3C
 -- This program...
+<<<<<<< HEAD
 
 
 ------------------------------------------------------------------------------------------
 --SOUNDS
 -------------------------------------------------------------------------------------------
 
+=======
+ 
+-----------------------------------------------------------------------------------------------
+--SOUNDS
+-----------------------------------------------------------------------------------------------
+
+local actionableSound = audio.loadSound("Sound/actionable.mp3")
+local actionableSoundChannel
+>>>>>>> 4006a88834e07c84f00a35b019dbff9c1f43ebd5
 
 
 --set background colour
@@ -52,14 +62,14 @@ local function BlueButtonListener(touch)
     	blueButton.isVisible = false
     	redButton.isVisible = true
     	textObject.isVisible = true
-        checkmarkButton.isVisible = true
+        actionableSoundChannel = audio.play(actionableSound)
     end	
 
     if (touch.phase == "ended") then
         blueButton.isVisible = true
+        checkmarkButton.isVisible = true
         redButton.isVisible = false
         textObject.isVisible = false
-        checkmarkButton.isVisible = false
     end
 end    
  
@@ -70,16 +80,17 @@ end
 -- and make the red button disappear
 local function redButtonListener(touch)
     if (touch.phase == "began") then
-    	redButton.isVisible = false
+    	redButton.isVisible = true
     	blueButton.isVisible = false
     	textObject.isVisible = true
     end	
 
 
     if (touch.phase == "ended") then
-        redButton.isVisible = true
-        blueButton.isVisible = false
+        redButton.isVisible = false
+        blueButton.isVisible = true
         textObject.isVisible = false
+        checkmarkButton.isVisible = true
     end
 end     
 
@@ -88,6 +99,7 @@ end
 -- output: none
 -- Description:when checkmark button os clicked, it will
 -- and make the checkmark button disappear
+
 local function checkmarkButtonListener(touch)
     if (touch.phase == "began") then
     	checkmarkButton.isVisible = false
@@ -102,4 +114,7 @@ local function checkmarkButtonListener(touch)
     end
 end     
 --add the respective listesteners to each object
-blueButton:addEventListener("touch", BlueButtonListener)  
+blueButton:addEventListener("touch", BlueButtonListener)
+
+--add the respective listesteners to each object
+redButton:addEventListener("touch", redButtonListener)
