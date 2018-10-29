@@ -31,6 +31,7 @@ local totalSeconds = 5
 local secondsLeft = 5
 local clockText
 local countDownTimer
+local numderPoint = 0
 
 local lives = 5
 local heart1
@@ -56,13 +57,32 @@ local wrongSoundSoundSound = audio.loadSound("Sound/wrongSound.mp3")
 -- local functions 
 ------------------------------------------------------------------------------------
 
+local function UpdateHeart()
+    if (heart == 3) = true
+        heart1 = true
+        heart2 = true      
+        heart3 = true
+        heart4 = false
+    elseif (heart == 2) = true   
+        heart1 = true
+        heart2 = true      
+        heart3 = false
+    elseif (heart == 1) = true   
+        heart1 = true
+        heart2 = false
+     elseif (heart == 0) = true   
+        heart1 = false                     
+    end
+end
+
+
 local function UpdateTime()
 
 	--decrement the numder of secounds
 	secondsLeft = secondsLeft - 1
 
 	--display the numder of seconds left in the clock odject 
-	clockText.text = secondsleft .. ""
+	clockText.text = secondsLeft .. ""
     
 
     if (secondsLeft == 0 ) then
@@ -120,17 +140,7 @@ local function AskQuestion()
 
 end
 
-local function UpdateHeart()
-	if (lives == 4) then
-		   heart4.invisible = false
-		elseif(lives == 3) then
-    		heart3.invisible = false
-		elseif(lives == 2) then
-    		heart2.invisible = false
-    	elseif (lives == 1) then
-    		heart1.isVisible = false
-    end	
-end
+
 
 
 
@@ -160,6 +170,8 @@ local function NumericFieldListener( event )
 			incorrectObject.isVisible = true
 			wrongSoundSoundSoundChannel = audio.play(wrongSoundSoundSound)
 			timer.performWithDelay(2000,HideCorrect)
+			lives = lives -1
+			UpdateHeart()
 		end
 	    --clear text field 
 	    event.target.text = ""
@@ -188,7 +200,7 @@ numericField.yScale = 1
 
 -- create the incorrect  text object and make it invisible
 incorrectObject = display.newText("incorrect!", display.contentWidth/2, display.contentHeight*2/3, nil, 90)
-incorrectObject:setTextColor(15/255, 255/255, 18/255)
+incorrectObject:setTextColor(150/255, 25/255, 18/255)
 incorrectObject.isVisible = false
 
 --add the event listener fo the numeric field
@@ -211,9 +223,17 @@ heart4 = display.newImageRect("Images/heart.png", 100, 100)
 heart4.x = display.contentWidth * 4 / 8
 heart4.y = display.contentHeight * 1 / 7
 
+-- display a question and sets the color 
+clockText = display.newText("", display.contentWidth/2, display.contentHeight/2, nil, 50)
+clockText:setTextColor(200/255, 255/255, 180/255)
+
+
 -----------------------------------------------------------------------------------------------------------------------------
 -- function calls
 -----------------------------------------------------------------------------------------------------------------------------
 
--- call the functionto as the Question
+-- call the function to as the Question
 AskQuestion()
+Starttimer()
+UpdateTime()
+UpdateHeart()
