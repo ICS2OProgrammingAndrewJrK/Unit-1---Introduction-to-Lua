@@ -25,13 +25,17 @@ local userAnswer
 local incorrectAnswer
 local correctAnswer
 local randomOperator
+local pointsTextObject
+local numberOfPoints = 0
 
 --varible for the timer
 local totalSeconds = 5
 local secondsLeft = 5
-local clockText
+local clockText 
 local countDownTimer
 local numderPoint = 0
+local lives= 4 
+local gameOver
 
 local lives = 5
 local heart1
@@ -58,21 +62,41 @@ local wrongSoundSoundSound = audio.loadSound("Sound/wrongSound.mp3")
 ------------------------------------------------------------------------------------
 
 local function UpdateHeart()
-    if (heart == 3) = true
-        heart1 = true
-        heart2 = true      
-        heart3 = true
-        heart4 = false
-    elseif (heart == 2) = true   
-        heart1 = true
-        heart2 = true      
-        heart3 = false
-    elseif (heart == 1) = true   
-        heart1 = true
-        heart2 = false
-     elseif (heart == 0) = true   
-        heart1 = false                     
-    end
+    if (lives == 4) then
+      heart1.isVisible = true
+      heart2.isVisible = true
+      heart3.isVisible = true
+      heart4.isVisible = true
+
+     elseif (lives == 3) then
+      heart1.isVisible = true
+      heart2.isVisible = true
+      heart3.isVisible = true
+      heart4.isVisible = false
+  
+     elseif (lives == 2) then
+      heart1.isVisible = true
+      heart2.isVisible = true
+      heart3.isVisible = false
+      heart4.isVisible = false
+
+     elseif (lives == 1) then
+      heart1.isVisible = true
+      heart2.isVisible = false
+      heart3.isVisible = false
+      heart4.isVisible = false
+
+     elseif (lives == 0) then
+      heart1.isVisible = false
+      heart2.isVisible = false
+      heart3.isVisible = false
+      heart4.isVisible = false
+      gameOver.isVisible = true
+      buddySoundChannel = audio.play(buddySound)
+      numericField.isVisible = false
+      pointsTextObject.isVisible = false
+      questionObject.isVisible = false
+     end
 end
 
 
@@ -84,7 +108,6 @@ local function UpdateTime()
 	--display the numder of seconds left in the clock odject 
 	clockText.text = secondsLeft .. ""
     
-
     if (secondsLeft == 0 ) then
     	-- reset the numder of seconds left
     	secondsLeft = totalSeconds
@@ -148,6 +171,10 @@ local function HideCorrect()
 	correctObject.isVisible = false
 	AskQuestion()
 end
+local function HideIncorrect()
+ incorrectObject.isVisible = false 
+ AskQuestion()
+end
 
 local function NumericFieldListener( event )
 
@@ -165,6 +192,10 @@ local function NumericFieldListener( event )
 			incorrectObject.isVisible = false
 			correctSoundSoundChannel = audio.play(correctSoundSound)
 			timer.performWithDelay(2000,HideCorrect)
+			numberOfPoints = numberOfPoints + 1
+			 event.target.text = ""
+			-- create increasing points in the text object
+            pointsTextObject.text = "Points = ".. numberOfPoints
 		else 
 			correctObject.isVisible = false 
 			incorrectObject.isVisible = true
@@ -223,9 +254,19 @@ heart4 = display.newImageRect("Images/heart.png", 100, 100)
 heart4.x = display.contentWidth * 4 / 8
 heart4.y = display.contentHeight * 1 / 7
 
--- display a question and sets the color 
-clockText = display.newText("", display.contentWidth/2, display.contentHeight/2, nil, 50)
-clockText:setTextColor(200/255, 255/255, 180/255)
+--display the timer on the screen
+clockText = display.newText(secondsLeft, 520, 680, nil, 190)
+clockText:setFillColor( 40/255, 40/255, 160/255 )
+
+--create and display game over on the screen
+gameOver = display.newImageRect("Images/gameOver.png", display.contentWidth, display.contentHeight)
+gameOver.anchorX = 0
+gameOver.anchorY = 0
+gameOver.isVisible = false
+
+-- create points box and make it visible
+pointsTextObject = display.newText( "Points = ".. numberOfPoints, 800, 385, nil, 50 )
+pointsTextObject:setTextColor(240/255, 19/255, 25/255)
 
 
 -----------------------------------------------------------------------------------------------------------------------------
@@ -235,5 +276,4 @@ clockText:setTextColor(200/255, 255/255, 180/255)
 -- call the function to as the Question
 AskQuestion()
 Starttimer()
-UpdateTime()
-UpdateHeart()
+

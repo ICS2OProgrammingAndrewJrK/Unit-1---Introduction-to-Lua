@@ -11,6 +11,16 @@ local physics = require("physics")
 
 -- start phsics
 physics.start()
+
+
+------------------------------------------------------------------------------------
+-- SOUNDs
+------------------------------------------------------------------------------------
+
+
+local funnysongSound = audio.loadSound("Sounds/funnysong.mp3")
+local funnysongSoundChannel = audio.play(funnysongSound)
+
 -----------------------------------------------------------------------------------------
 --Objects
 -----------------------------------------------------------------------------------------
@@ -49,26 +59,39 @@ physics.addBody(beam, "static", {friction=0.5, bounce=0.3})
 
 ------------------------------------------------------------------------------------------
 
-local beamlong = display.newImage("Images/beamlong.png", 0, 0)
+local ground = display.newImage("Images/ground.png", 0, 0)
 --set the x and y pos
-beamlong.x = display.contentCenterX/15
-beamlong.y = display.contentCenterY*1.65
+ground.x = display.contentCenterX/15
+ground.y = display.contentCenterY*1.65
 
-beamlong.x = 900
-beamlong.y = 600
+ground.x = 900
+ground.y = 600
 
-beamlong.xScale = 5
-beamlong.yScale = 5
+ground.xScale = 2
+ground.yScale = 1
 
 -- rotate the bame -60 derees so its on an angle
-beamlong:rotate(90)
+ground:rotate(90)
 
 -- send it to the back layer
-beamlong:toBack()
+ground:toBack()
 
 --add to physics
-physics.addBody(beamlong, "static", {friction=0.5, bounce=0.3})
+physics.addBody(ground, "static", {friction=0.5, bounce=0.3})
+
 ------------------------------------------------------------------------------------------
+--Ground
+local ground = display.newImage("Images/ground.png", 0, 0)
+ground.x = 700
+ground.y = 100
+
+--Change the width to be the same as the screen
+ground.width = display.contentWidth
+
+-- Add to physics
+physics.addBody(ground, "static", {friction=0.5, bounce=0.3})
+
+---------------------------------------------------------------------------------------------------
 -- create bkg
 local bkg = display.newImage("Images/bkg.png", 0, 0)
 
@@ -92,29 +115,38 @@ local function fristBall()
     local ball1 = display.newImage("Images/super_ball.png", 0, 0)
 
     --add to phsics
-    physics.addBody(ball1, {density=1, friction=0.5, bounce=1, radius=25})
+    physics.addBody(ball1, {density=4, friction=0.8, bounce=2, radius=25})
 end
 
 ------------------------------------------------------------------------------------------
 
 local function secondBall()
     -- creation frist ball
-    local ball2 = display.newImage("Images/super_ball.png", 0, 50)
+    local ball2 = display.newImage("Images/super_ball.png", 300, 600)
     -- adding to physics
-    physics.addBody(ball2, {density=1, friction=0.5, bounce=1, radius=25})
-    ball2.xScale = 4
-    ball2.yScale = 4
+    physics.addBody(ball2, {density=2, friction=0.2, bounce=2, radius=25})
+    ball2.xScale = 3
+    ball2.yScale = 3
 end
 
 ---------------------------------------------------------------------------------------------------
 
 local function thirtBall()
     -- creation frist ball
-    local ball3 = display.newImage("Images/super_ball.png", 0, 0)
+    local ball3 = display.newImage("Images/super_ball.png", 50, 0)
     -- adding to physics
-    physics.addBody(ball3, {density=1, friction=0.5, bounce=1, radius=25})
+    physics.addBody(ball3, {density=3, friction=0.9, bounce=4, radius=25})
     ball3.xScale = 2
     ball3.yScale = 2
+end
+-----------------------------------------------------------------------------------------------
+local function fourthBall()
+    -- creation frist ball
+    local ball4 = display.newImage("Images/super_ball.png", 50, 0)
+    -- adding to physics
+    physics.addBody(ball4, {density=6, friction=0.1, bounce=1, radius=25})
+    ball4.xScale = 4
+    ball4.yScale = 4
 end
 
 -----------------------------------------------------------------------------------------
@@ -123,3 +155,4 @@ end
 timer.performWithDelay( 0, fristBall)
 timer.performWithDelay( 500, secondBall)
 thirtBall()
+fourthBall()
