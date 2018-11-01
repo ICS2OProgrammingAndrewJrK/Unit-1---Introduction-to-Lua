@@ -2,22 +2,14 @@
 -- Name: Your Name
 -- Course: ICS2O/3C
 -- This program...
-<<<<<<< HEAD
 
-
-------------------------------------------------------------------------------------------
---SOUNDS
--------------------------------------------------------------------------------------------
-
-=======
- 
 -----------------------------------------------------------------------------------------------
 --SOUNDS
 -----------------------------------------------------------------------------------------------
 
 local actionableSound = audio.loadSound("Sound/actionable.mp3")
 local actionableSoundChannel
->>>>>>> 4006a88834e07c84f00a35b019dbff9c1f43ebd5
+
 
 
 --set background colour
@@ -63,6 +55,7 @@ local function BlueButtonListener(touch)
     	redButton.isVisible = true
     	textObject.isVisible = true
         actionableSoundChannel = audio.play(actionableSound)
+        checkmarkButton.isVisible = true
     end	
 
     if (touch.phase == "ended") then
@@ -70,6 +63,7 @@ local function BlueButtonListener(touch)
         checkmarkButton.isVisible = true
         redButton.isVisible = false
         textObject.isVisible = false
+        checkmarkButton.isVisible = false
     end
 end    
  
@@ -83,6 +77,7 @@ local function redButtonListener(touch)
     	redButton.isVisible = true
     	blueButton.isVisible = false
     	textObject.isVisible = true
+        checkmarkButton.isVisible = true
     end	
 
 
@@ -90,7 +85,7 @@ local function redButtonListener(touch)
         redButton.isVisible = false
         blueButton.isVisible = true
         textObject.isVisible = false
-        checkmarkButton.isVisible = true
+        checkmarkButton.isVisible = false
     end
 end     
 

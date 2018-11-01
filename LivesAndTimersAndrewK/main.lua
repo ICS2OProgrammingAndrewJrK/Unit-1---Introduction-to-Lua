@@ -1,4 +1,4 @@
--- Title: LivesAndTimers
+ -- Title: LivesAndTimers
 -- Name: Anderw Jr
 -- Course: ICS2O/3C
 -- This program...
@@ -56,6 +56,8 @@ local correctSoundSoundChannel
 
 local wrongSoundSoundSound = audio.loadSound("Sound/wrongSound.mp3")
 
+local creepySoundSoundSound = audio.loadSound("Sound/creepy.mp3")
+local creepySoundChannel = audio.play(creepySound)
 
 ------------------------------------------------------------------------------------
 -- local functions 
@@ -231,7 +233,7 @@ numericField.yScale = 1
 
 -- create the incorrect  text object and make it invisible
 incorrectObject = display.newText("incorrect!", display.contentWidth/2, display.contentHeight*2/3, nil, 90)
-incorrectObject:setTextColor(150/255, 25/255, 18/255)
+incorrectObject:setTextColor(150/255, 205/255, 18/255)
 incorrectObject.isVisible = false
 
 --add the event listener fo the numeric field
@@ -255,8 +257,8 @@ heart4.x = display.contentWidth * 4 / 8
 heart4.y = display.contentHeight * 1 / 7
 
 --display the timer on the screen
-clockText = display.newText(secondsLeft, 520, 680, nil, 190)
-clockText:setFillColor( 40/255, 40/255, 160/255 )
+clockText = display.newText("", 520, 680, nil, 190)
+clockText:setFillColor( 40/255, 220/255, 160/255 )
 
 --create and display game over on the screen
 gameOver = display.newImageRect("Images/gameOver.png", display.contentWidth, display.contentHeight)
@@ -266,7 +268,7 @@ gameOver.isVisible = false
 
 -- create points box and make it visible
 pointsTextObject = display.newText( "Points = ".. numberOfPoints, 800, 385, nil, 50 )
-pointsTextObject:setTextColor(240/255, 19/255, 25/255)
+pointsTextObject:setTextColor(240/255, 190/255, 25/255)
 
 
 -----------------------------------------------------------------------------------------------------------------------------

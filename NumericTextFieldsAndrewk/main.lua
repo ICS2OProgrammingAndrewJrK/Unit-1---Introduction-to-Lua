@@ -30,10 +30,9 @@ local randomOperator
 -- SOUNDs
 ------------------------------------------------------------------------------------
 
-
-local heySound = audio.loadSound("Sounds/hey.mp3")--Setting a variable to an mp3 file
+--Setting a variable to an mp3 file
+local heySound = audio.loadSound("Sounds/hey.mp3")
 local heySoundChannel
-
 local wrongSound = audio.loadSound("Sounds/wrongSound.mp3")
 
 ------------------------------------------------------------------------------------
@@ -42,7 +41,7 @@ local wrongSound = audio.loadSound("Sounds/wrongSound.mp3")
 
 local function AskQuestion()
 	--generate 2 random numbers between a max. and a min. number
-	randomOperator = math.random(0,3)
+	randomOperator = math.random(1,3)
 	randomNumber1 = math.random(0,10)
 	randomNumber2 = math.random(0,10)
 
